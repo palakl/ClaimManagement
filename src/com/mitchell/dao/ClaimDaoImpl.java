@@ -11,10 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
-
 import javax.xml.bind.JAXBElement;
+
+import org.apache.commons.beanutils.PropertyUtils;
 
 import com.mitchell.exception.ClaimNotFoundException;
 import com.mitchell.model.MitchellClaimType;
@@ -75,7 +74,8 @@ public class ClaimDaoImpl implements ClaimDao {
 
 				if (currentDate.after(startDate) && currentDate.before(endDate)) {
 
-					claimList.add(factory.createMitchellClaim(entry.getValue()));
+					claimList
+							.add(factory.createMitchellClaim(entry.getValue()));
 
 				}
 
@@ -97,11 +97,8 @@ public class ClaimDaoImpl implements ClaimDao {
 
 			MitchellClaimType temp = dataStore.get(claim.getClaimNumber());
 			try {
-				
-				
-				
-				BeanUtils.copyProperties(claim, temp);
-				/*PropertyDescriptor[] properties = PropertyUtils
+
+				PropertyDescriptor[] properties = PropertyUtils
 						.getPropertyDescriptors(temp);
 				for (PropertyDescriptor descriptor : properties) {
 					if (PropertyUtils.isReadable(temp, descriptor.getName())
@@ -114,7 +111,7 @@ public class ClaimDaoImpl implements ClaimDao {
 							writeMethod.invoke(temp, value);
 						}
 					}
-				}*/
+				}
 			} catch (InvocationTargetException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -147,11 +144,10 @@ public class ClaimDaoImpl implements ClaimDao {
 	}
 
 	@Override
-	public VehicleInfoType getvehicleInfo(String claimNumber,
-			String vin) {
+	public VehicleInfoType getvehicleInfo(String claimNumber, String vin) {
 
 		JAXBElement<MitchellClaimType> claim = getClaim(claimNumber);
-		
+
 		for (VehicleInfoType vehicle : claim.getValue().getVehicles()
 				.getVehicleDetails()) {
 
