@@ -74,8 +74,7 @@ public class ClaimDaoImpl implements ClaimDao {
 
 				if (currentDate.after(startDate) && currentDate.before(endDate)) {
 
-					claimList
-							.add(factory.createMitchellClaim(entry.getValue()));
+					claimList.add(factory.createMitchellClaim(entry.getValue()));
 
 				}
 
@@ -97,7 +96,10 @@ public class ClaimDaoImpl implements ClaimDao {
 
 			MitchellClaimType temp = dataStore.get(claim.getClaimNumber());
 			try {
-
+				
+				
+				
+				//BeanUtils.copyProperties(claim, temp);
 				PropertyDescriptor[] properties = PropertyUtils
 						.getPropertyDescriptors(temp);
 				for (PropertyDescriptor descriptor : properties) {
@@ -144,10 +146,11 @@ public class ClaimDaoImpl implements ClaimDao {
 	}
 
 	@Override
-	public VehicleInfoType getvehicleInfo(String claimNumber, String vin) {
+	public VehicleInfoType getvehicleInfo(String claimNumber,
+			String vin) {
 
 		JAXBElement<MitchellClaimType> claim = getClaim(claimNumber);
-
+		
 		for (VehicleInfoType vehicle : claim.getValue().getVehicles()
 				.getVehicleDetails()) {
 
