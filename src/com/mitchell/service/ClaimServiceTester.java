@@ -14,7 +14,6 @@ public class ClaimServiceTester {
 
 	private Client client;
 	private String REST_SERVICE_URL = "http://localhost:8080/ClaimManagement/rest/ClaimService/claims/read";
-	private static final String SUCCESS_RESULT = "<result>success</result>";
 	private static final String PASS = "pass";
 	private static final String FAIL = "fail";
 
@@ -34,17 +33,6 @@ public class ClaimServiceTester {
 		// test get claim Web Service Method
 		tester.testGetClaim();
 
-		/*
-		 * //test get all users Web Service Method tester.testGetAllUsers();
-		 * 
-		 * //test get user Web Service Method tester.testGetUser();
-		 * 
-		 * //test update user Web Service Method tester.testUpdateUser();
-		 * 
-		 * //test add user Web Service Method tester.testAddUser();
-		 * 
-		 * //test delete user Web Service Method tester.testDeleteUser();
-		 */
 	}
 
 	// Test: Get list of claims
